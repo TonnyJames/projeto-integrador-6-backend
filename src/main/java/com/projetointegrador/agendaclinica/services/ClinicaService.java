@@ -44,6 +44,11 @@ public class ClinicaService {
         return repository.findAll();
     }
 
+    public List<Clinica> findByCategoria(Integer categoria) throws Exception {
+        Optional<List<Clinica>> clinicasEncontradasList = repository.findByCategorias(categoria);
+        return clinicasEncontradasList.orElseThrow(() -> new ObjectnotFoudException("Nenhuma clinica com essa categoria foi encontrada no momento"));
+    }
+
     public Clinica create(ClinicaDTO objDTO) {
         objDTO.setId(null);
 //        objDTO.setSenha(encoder.encode(objDTO.getSenha()));

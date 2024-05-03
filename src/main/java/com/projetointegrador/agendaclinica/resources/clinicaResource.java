@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/servicos")
-public class servicoResource {
+@RequestMapping(value = "/clinicas")
+public class clinicaResource {
 
     @Autowired
     private ClinicaService service;
@@ -33,6 +33,13 @@ public class servicoResource {
         List<Clinica> list = service.findAll();
         List<ClinicaDTO> listDTO = list.stream().map(obj -> new ClinicaDTO(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDTO);
+    }
+
+    @GetMapping(value = "porcategoria/{categoria}")
+    public ResponseEntity<List<ClinicaDTO>> findByCategoria(@PathVariable Integer categoria) throws Exception {
+        List<Clinica> clinicasEncontradasList = service.findByCategoria(categoria);
+        List<ClinicaDTO> clinicasEncontradasDtoList = clinicasEncontradasList.stream().map(clinica -> new ClinicaDTO(clinica)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(clinicasEncontradasDtoList);
     }
 
     @PreAuthorize("hasAnyRole('PACIENTE')")

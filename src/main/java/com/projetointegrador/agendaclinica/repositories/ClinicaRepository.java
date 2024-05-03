@@ -11,4 +11,6 @@ public interface ClinicaRepository extends JpaRepository<Clinica, Integer> {
     List<Clinica> findByAdmin(Integer AdminID);
     Optional<Clinica> findByNrInsc(String nrInsc);
     Optional<Clinica> findByEmail(String email);
+
+    Optional<List<Clinica>> findByCategorias(Integer categoria);
 }
