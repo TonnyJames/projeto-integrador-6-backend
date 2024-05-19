@@ -4,6 +4,7 @@ package com.projetointegrador.agendaclinica.services;
 import com.projetointegrador.agendaclinica.domain.Agendamento;
 import com.projetointegrador.agendaclinica.domain.Paciente;
 import com.projetointegrador.agendaclinica.domain.Clinica;
+import com.projetointegrador.agendaclinica.domain.enums.Categoria;
 import com.projetointegrador.agendaclinica.domain.enums.Horarios;
 import com.projetointegrador.agendaclinica.repositories.AgendamentosRepository;
 import com.projetointegrador.agendaclinica.repositories.PacienteRepository;
@@ -51,12 +52,12 @@ public class DBService {
         Clinica clinica3 = new Clinica(null, Set.of(4, 5, 6), "Clinica Popular", "07422607000109", "(21) 2986-4393", "clinicapopular@mail.com", cli3);
         Clinica clinica4 = new Clinica(null, Set.of(7, 8, 9), "Science Clinic", "16106001000155", "(84) 3548-5964", "scienceclinic@mail.com", cli4);
 
-        Agendamento agend1 = new Agendamento(null, clinica4, "2022-12-28", Horarios.H3, "teste titulo", "Teste observação", cli3);
-        Agendamento agend2 = new Agendamento(null, clinica1, "2022-12-11", Horarios.H2, "teste titulo", "Teste observação", cli2);
-        Agendamento agend3 = new Agendamento(null, clinica2, "2022-12-12", Horarios.H1, "teste titulo", "Teste observação", cli1);
-        Agendamento agend4 = new Agendamento(null, clinica3, "2022-12-05", Horarios.H3, "teste titulo", "Teste observação", cli4);
-        Agendamento agend5 = new Agendamento(null, clinica2, "2022-12-05", Horarios.H3, "teste titulo", "Teste observação", cli5);
-        Agendamento agend6 = new Agendamento(null, clinica4, "2022-12-05", Horarios.H3, "teste titulo", "Teste observação", cli6);
+        Agendamento agend1 = new Agendamento(null, clinica4, "2022-12-28", Horarios.H3, Categoria.CLINICO, "Teste observação", cli3);
+        Agendamento agend2 = new Agendamento(null, clinica1, "2022-12-11", Horarios.H2, Categoria.DERMATOLOGISTA, "Teste observação", cli2);
+        Agendamento agend3 = new Agendamento(null, clinica2, "2022-12-12", Horarios.H1, Categoria.GERIATRA, "Teste observação", cli1);
+        Agendamento agend4 = new Agendamento(null, clinica3, "2022-12-05", Horarios.H3, Categoria.ONCOLOGISTA, "Teste observação", cli4);
+        Agendamento agend5 = new Agendamento(null, clinica2, "2022-12-05", Horarios.H3, Categoria.DERMATOLOGISTA, "Teste observação", cli5);
+        Agendamento agend6 = new Agendamento(null, clinica4, "2022-12-05", Horarios.H3, Categoria.OTORRINOLARINGOLOGISTA, "Teste observação", cli6);
 
 //        colaboradorRepository.saveAll(Arrays.asList(colab1, colab2, colab3));
         pacienteRepository.saveAll(Arrays.asList(cli1, cli2, cli3, cli4, cli5, cli6));

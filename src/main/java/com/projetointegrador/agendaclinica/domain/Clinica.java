@@ -41,6 +41,7 @@ public class Clinica implements Serializable {
     @JoinColumn(name = "admin_id")
     private Paciente admin;
 
+    @Transient
     @JsonIgnore
     @OneToMany(mappedBy = "clinica")
     private List<Agendamento> agendamentos = new ArrayList<>();

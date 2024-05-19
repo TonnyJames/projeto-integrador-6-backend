@@ -2,6 +2,7 @@ package com.projetointegrador.agendaclinica.domain.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.projetointegrador.agendaclinica.domain.Agendamento;
+import com.projetointegrador.agendaclinica.domain.enums.Categoria;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -14,9 +15,9 @@ public class AgendamentoDTO implements Serializable {
     private Integer id;
 
     @NotNull(message = "O campo SERVIÇO é obrigatório")
-    private Integer servico;
+    private Integer clinica;
 
-    private String nomeServico;
+    private String nomeClinica;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataCriacao = LocalDate.now();
@@ -30,9 +31,12 @@ public class AgendamentoDTO implements Serializable {
 //    private Integer prioridade;
 //    @NotNull(message = "O campo STATUS é obrigatório")
 //    private Integer status;
+//
+//    @NotNull(message = "O campo TÍTULO é obrigatório")
+//    private String titulo;
 
-    @NotNull(message = "O campo TÍTULO é obrigatório")
-    private String titulo;
+    @NotNull(message = "O campo ESPECIALIDADE é obligatório")
+    private Categoria especialidade;
 
     private String observacoes;
 
@@ -49,14 +53,15 @@ public class AgendamentoDTO implements Serializable {
 
     public AgendamentoDTO(Agendamento obj) {
         this.id = obj.getId();
-        this.servico = obj.getServico().getId();
-        this.nomeServico = obj.getServico().getNmNegocio();
+        this.clinica = obj.getServico().getId();
+        this.nomeClinica = obj.getServico().getNmNegocio();
         this.dataCriacao = obj.getDataCriacao();
         this.dataAgendada = obj.getDataAgendada().toString();
         this.horaAgendada = obj.getHoraAgendada().getCodigo();
 //        this.prioridade = obj.getPrioridade().getCodigo();
 //        this.status = obj.getStatus().getCodigo();
-        this.titulo = obj.getTitulo();
+//        this.titulo = obj.getTitulo();
+        this.especialidade = obj.getEspecialidade();
         this.observacoes = obj.getObservacoes();
 //        this.colaborador = obj.getColaborador().getId();
         this.paciente = obj.getPaciente().getId();
@@ -72,20 +77,20 @@ public class AgendamentoDTO implements Serializable {
         this.id = id;
     }
 
-    public Integer getServico() {
-        return servico;
+    public Integer getClinica() {
+        return clinica;
     }
 
-    public void setServico(Integer servico) {
-        this.servico = servico;
+    public void setClinica(Integer clinica) {
+        this.clinica = clinica;
     }
 
-    public String getNomeServico() {
-        return nomeServico;
+    public String getNomeClinica() {
+        return nomeClinica;
     }
 
-    public void setNomeServico(String nomeServico) {
-        this.nomeServico = nomeServico;
+    public void setNomeClinica(String nomeClinica) {
+        this.nomeClinica = nomeClinica;
     }
 
     public LocalDate getDataCriacao() {
@@ -127,13 +132,22 @@ public class AgendamentoDTO implements Serializable {
 //    public void setStatus(Integer status) {
 //        this.status = status;
 //    }
+//
+//    public String getTitulo() {
+//        return titulo;
+//    }
+//
+//    public void setTitulo(String titulo) {
+//        this.titulo = titulo;
+//    }
 
-    public String getTitulo() {
-        return titulo;
+
+    public Categoria getEspecialidade() {
+        return especialidade;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setEspecialidade(Categoria especialidade) {
+        this.especialidade = especialidade;
     }
 
     public String getObservacoes() {

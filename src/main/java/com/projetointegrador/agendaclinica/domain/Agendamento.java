@@ -1,7 +1,9 @@
 package com.projetointegrador.agendaclinica.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.projetointegrador.agendaclinica.domain.enums.Categoria;
 import com.projetointegrador.agendaclinica.domain.enums.Horarios;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -25,9 +27,13 @@ public class Agendamento implements Serializable {
 
     private Horarios horaAgendada;
 
-//    private Prioridade prioridade;
+    //    private Prioridade prioridade;
 //    private Status status;
-    private String titulo;
+//    private String titulo;
+
+    @CollectionTable(name = "CATEGORIA")
+    private Categoria especialidade;
+
     private String observacoes;
 
 //    @ManyToOne
@@ -39,21 +45,22 @@ public class Agendamento implements Serializable {
     private Paciente paciente;
 
     @ManyToOne
-    @JoinColumn(name = "servico_id")
+    @JoinColumn(name = "clinica_id")
     private Clinica clinica;
 
     public Agendamento() {
         super();
     }
 
-    public Agendamento(Integer id, Clinica clinica, String dataAgendada, Horarios horaAgendada, String titulo, String observacoes, Paciente paciente) {
+    public Agendamento(Integer id, Clinica clinica, String dataAgendada, Horarios horaAgendada, Categoria especialidade, String observacoes, Paciente paciente) {
         this.id = id;
         this.clinica = clinica;
         this.dataAgendada = LocalDate.parse(dataAgendada);
         this.horaAgendada = horaAgendada;
 //        this.prioridade = prioridade;
 //        this.status = status;
-        this.titulo = titulo;
+//        this.titulo = titulo;
+        this.especialidade = especialidade;
         this.observacoes = observacoes;
 //        this.colaborador = colaborador;
         this.paciente = paciente;
@@ -83,7 +90,9 @@ public class Agendamento implements Serializable {
         this.dataAgendada = dataAgendada;
     }
 
-    public Horarios getHoraAgendada() { return horaAgendada; }
+    public Horarios getHoraAgendada() {
+        return horaAgendada;
+    }
 
     public void setHoraAgendada(Horarios horaAgendada) {
         this.horaAgendada = horaAgendada;
@@ -104,13 +113,22 @@ public class Agendamento implements Serializable {
 //    public void setStatus(Status status) {
 //        this.status = status;
 //    }
+//
+//    public String getTitulo() {
+//        return titulo;
+//    }
+//
+//    public void setTitulo(String titulo) {
+//        this.titulo = titulo;
+//    }
 
-    public String getTitulo() {
-        return titulo;
+
+    public Categoria getEspecialidade() {
+        return especialidade;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setEspecialidade(Categoria especialidade) {
+        this.especialidade = especialidade;
     }
 
     public String getObservacoes() {

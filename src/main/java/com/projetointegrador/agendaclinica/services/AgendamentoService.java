@@ -59,7 +59,7 @@ public class AgendamentoService {
     private Agendamento newAgendamento(AgendamentoDTO obj) {
 //        Colaborador colaborador = colaboradorService.findById(obj.getColaborador());
         Paciente paciente = pacienteService.findById(obj.getPaciente());
-        Clinica clinica = clinicaService.findById(obj.getServico());
+        Clinica clinica = clinicaService.findById(obj.getClinica());
 
         Agendamento agendamento = new Agendamento();
         if (obj.getId() != null) {
@@ -74,7 +74,8 @@ public class AgendamentoService {
         agendamento.setServico(clinica);
 //        agendamento.setColaborador(colaborador);
         agendamento.setPaciente(paciente);
-        agendamento.setTitulo(obj.getTitulo());
+//        agendamento.setTitulo(obj.getTitulo());
+        agendamento.setEspecialidade(obj.getEspecialidade());
 //        agendamento.setPrioridade(Prioridade.toEnum(obj.getPrioridade()));
 //        agendamento.setStatus(Status.toEnum(obj.getStatus()));
         agendamento.setObservacoes(obj.getObservacoes());
