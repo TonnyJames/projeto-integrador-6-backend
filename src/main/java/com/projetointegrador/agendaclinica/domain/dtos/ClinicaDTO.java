@@ -76,8 +76,8 @@ public class ClinicaDTO implements Serializable {
         return categorias.stream().map(x -> Categoria.toEnum(x)).collect(Collectors.toSet());
     }
 
-    public void addCategorias(Categoria categoria) {
-        this.categorias.add(categoria.getCodigo());
+    public void addCategorias(Integer categoria) {
+        this.categorias.add(categoria);
     }
 
     public String getNmNegocio() {

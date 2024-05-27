@@ -87,7 +87,7 @@ public class ClinicaService {
             clinica.setId(obj.getId());
         }
 
-        obj.getCategorias().forEach(clinica::addCategorias);
+        obj.getCategorias().forEach(x -> clinica.addCategorias(x.getCodigo()));
         clinica.setNmNegocio(obj.getNmNegocio());
         clinica.setNrInsc(obj.getNrInsc());
         clinica.setTelefone(obj.getTelefone());

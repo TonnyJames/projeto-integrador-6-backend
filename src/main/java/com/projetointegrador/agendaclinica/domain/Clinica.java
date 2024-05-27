@@ -7,10 +7,7 @@ import com.projetointegrador.agendaclinica.domain.enums.Categoria;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
@@ -24,7 +21,7 @@ public class Clinica implements Serializable {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "CATEGORIA")
-    private Set<Integer> categorias;
+    private Set<Integer> categorias = new HashSet<>();
     private String nmNegocio;
 
     @Column(unique = true)
@@ -74,8 +71,8 @@ public class Clinica implements Serializable {
         return categorias.stream().map(x -> Categoria.toEnum(x)).collect(Collectors.toSet());
     }
 
-    public void addCategorias(Categoria categoria) {
-        this.categorias.add(categoria.getCodigo());
+    public void addCategorias(Integer categoria) {
+        this.categorias.add(categoria);
     }
 
     public String getNmNegocio() {
